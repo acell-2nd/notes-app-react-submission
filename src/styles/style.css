@@ -53,10 +53,14 @@ header h1 {
   flex: 1;
 }
 
+.navigation ul {
+ display: flex;
+
+}
 header .navigation ul li {
-  display: inline-block;
   font-size: 24px;
   margin: 0 8px;
+  list-style: none;
 }
 
 main {
@@ -189,7 +193,7 @@ main {
   color: var(--on-background-grey)
 }
 
-.search-bar input {
+.search-bar {
   margin: 16px 0;
   font-family: 'Inter', sans-serif;
   background-color: transparent;
@@ -200,7 +204,7 @@ main {
   color: var(--on-background);
 }
 
-.search-bar input::placeholder {
+.search-bar::placeholder {
   color: var(--on-background-grey);
 }
 
@@ -221,41 +225,92 @@ main {
 .toggle-locale {
   font-size: 28px;
 }
+.header-login,
+.header-register{
+  height:9vh ;
+}
+.login-page,
+.register-page {
+  min-height: calc(100vh - 9vh);
+  width: 100%;
+  margin: 0;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.input-login, .input-register {
+.login-page h2,
+.register-page h2 {
+  width: min(100%, 440px);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.login-page p,
+.register-page p {
+  width: min(100%, 440px);
+  text-align: center;
+  color: var(--on-background-grey);
+}
+
+.login-page p a,
+.register-page p a {
+  color: var(--primary);
+}
+
+.login-input,
+.register-input {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin: 32px 0;
+  width: min(100%, 440px);
 }
 
-.input-login label, .input-register label {
-  font-size: 24px;
-  font-weight: lighter;
-}
-
-.input-login input, .input-register input {
+.login-input input,
+.register-input input {
   font-size: 18px;
   font-family: 'Inter', sans-serif;
-  margin-top: 8px;
-  margin-bottom: 16px;
-  display: block;
   width: 100%;
-  padding: 8px;
+  padding: 12px 14px;
   background-color: transparent;
   border-radius: 8px;
-  border: 3px solid var(--on-background);
-  color: var(--on-background)
+  border: 1px solid var(--on-background-grey);
+  color: var(--on-background);
 }
 
-.input-login button, .input-register button {
+.login-input input::placeholder,
+.register-input input::placeholder {
+  color: var(--on-background-grey);
+}
+
+.login-input input:focus,
+.register-input input:focus,
+.search-bar:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.login-input button,
+.register-input button {
   font-family: 'Inter', sans-serif;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 18px;
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border: 0;
   border-radius: 8px;
-  background-color: var(--on-background);
-  color: var(--background);
+  background-color: var(--primary);
+  color: #121212;
   cursor: pointer;
+  transition: filter 0.2s ease-in-out;
+}
+
+.login-input button:hover,
+.register-input button:hover {
+  filter: brightness(1.1);
 }
 
 .button-logout {

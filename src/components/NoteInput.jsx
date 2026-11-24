@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
+import useInput from './useInput';
 
 function NoteInput({ addNote }) {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, handChangeTitle] = useInput('');
+  const [body, handChangeBody] = useInput('');
 
   function onSubmitHandler() {
-    // body disimpan sebagai HTML (innerHTML), cek isi teksnya saja untuk validasi
+  
     const plainBody = body.replace(/<[^>]*>/g, '').trim();
     if (!title.trim() && !plainBody) {
       return;
@@ -21,13 +22,13 @@ function NoteInput({ addNote }) {
         type="text"
         placeholder="Catatan rahasia"
         value={title}
-        onChange={(event) => setTitle(event.target.value)}
+        onChange={handChangeTitle}
       />
       <div
         className="add-new-page__input__body"
         data-placeholder="Sebenarnya saya adalah ...."
         contentEditable
-        onInput={(event) => setBody(event.target.innerHTML)}
+        onInput={handChangeBody}
       />
       <div className="add-new-page__action">
         <button
