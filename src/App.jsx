@@ -19,13 +19,21 @@ function App() {
   const [userName , setUserName] = useState(null)
 const onLogginSuccess = async ({accessToken}) => {
   putAccessToken(accessToken);
-  const { name,data} = await getUserLogged()
+  const { data, error } = await getUserLogged()
+
+  if(error || !data){
+    setAuthUser(null)
+    setUserName(null)
+    return
+  }
+
   setAuthUser(data)
   setUserName(data.name)
 }
 const onLogout = () => {
   putAccessToken('');
   setAuthUser(null);
+  setUserName(null);
 };
 
 const toggleTheme = () =>{
@@ -44,12 +52,23 @@ const themeContextValue = useMemo(()=>({
 
 useEffect(()=>{
   const getDataUser = async () => {
+    try {
       const {data, error} = await getUserLogged();
-      setAuthUser(data)
-      setLoading(false)
-      setUserName(data.name)
-    if(error){
+
+      if(error || !data){
+        setAuthUser(null)
+        setUserName(null)
+      }else{
+        setAuthUser(data)
+        setUserName(data.name)
+      }
+    } catch (err) {
+
       setAuthUser(null)
+      setUserName(null)
+    } finally {
+      
+      setLoading(false)
     }
   }
  

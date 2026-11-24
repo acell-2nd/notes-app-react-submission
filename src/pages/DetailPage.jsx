@@ -5,7 +5,7 @@ import { FiArchive, FiInbox, FiTrash2 } from 'react-icons/fi';
 import NotFoundPage from './NotFoundPage';
 import { showFormattedDate } from '../utils';
 import { useState, useEffect } from 'react';
-import Header from '../components/Header';
+
 import {
   getNote, deleteNote, archiveNote, unarchiveNote,
 } from '../utils/network-data';
@@ -44,6 +44,9 @@ function DetailPage() {
     if(!error){
       navigate('/notes/archived')
     }
+  }
+  if (!note) {
+    return <NotFoundPage message='Tidak Ada Catatan'/>;
   }
 
   if(loading){

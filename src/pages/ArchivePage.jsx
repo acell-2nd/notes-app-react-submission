@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NotesList from "../components/NotesList";
-import { archiveNote, getArchivedNotes } from "../utils/network-data";
-import { Link, useSearchParams } from 'react-router-dom';
+import {  getArchivedNotes } from "../utils/network-data";
+import {  useSearchParams } from 'react-router-dom';
 function ArchivePage(){
  const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get('keyword') || '';

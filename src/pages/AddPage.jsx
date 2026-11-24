@@ -6,9 +6,11 @@ import { addNote } from '../utils/network-data';
 function AddPage() {
   const navigate = useNavigate();
 
-  function onAddNoteHandler(note) {
-    addNote(note);
-    navigate('/');
+  async function onAddNoteHandler(note) {
+    const {error} = await addNote(note);
+    if(!error){
+      navigate('/');
+    }
   }
 
   return (
